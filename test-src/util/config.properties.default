@@ -1,0 +1,35 @@
+#################################################
+################# Database
+#################################################
+###### dbenv {local, dev, staging, qa, live} ######
+dbenv = local
+hostname = localhost
+port = 1521
+sid = XE
+username = xxx
+password = x
+debug = false
+
+#################################################
+################## solr server
+#################################################
+solr_url = http://localhost:8984/solr
+
+#################################################
+################## mongoDB 
+#################################################
+mongo_host = localhost
+mongo_port = 27017
+
+#################################################
+################## selenium
+#################################################
+env = dev
+baseurl = http://testprojectx.com
+timeout = 10
+dimensionx = 20
+dimensiony = 200
+pointx = 0
+pointy = 0 
+sharedDriver = true
+

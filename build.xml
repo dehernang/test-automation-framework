@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="run" name="run all test suites" basedir=".">
+    <taskdef name="testng" classname="org.testng.TestNGAntTask">
+	    <classpath>
+            <pathelement location="lib/testng-6.8.jar"/>
+	    </classpath>
+    </taskdef>
+    <property name="testdir" location="${basedir}/test-output" />
+    <property name="builddir" location="${basedir}/bin" />
+    <property name="srcdir" location="${basedir}/test-src" />
+    <property name="libdir" location="${basedir}/lib" />
+    <property name="cleandir" location="${basedir}/bin/*" />
+    <property name="full-compile" value="true" />
+    <target name="clean">
+        <delete dir="${cleandir}"/>
+    </target>  
+    <path id="classpath.test">
+        <fileset dir="${libdir}">
+            <include name="**/*.jar" />
+        </fileset>
+        <pathelement location="${builddir}" />
+        <pathelement location="${srcdir}" />
+    </path>   
+    <target name="compile" depends="clean">
+        <mkdir dir="${builddir}"/>
+        <copy todir="${builddir}/util">
+            <fileset dir="${srcdir}/util/" excludes="**/*.java"/>
+        </copy>
+        <javac includeantruntime="false" srcdir="${srcdir}" destdir="${builddir}" verbose="${full-compile}">
+            <classpath refid="classpath.test"/>
+        </javac>
+    </target>
+    <target name="testSuite1" depends="compile">
+        <testng outputdir="${testdir}" classpathref="classpath.test"> 
+            <xmlfileset dir="${basedir}/configs" includes="suiteProjectX.xml"/> 
+        </testng>
+    </target>      
+    <target name="run" depends="testSuite1"/>    
+</project>

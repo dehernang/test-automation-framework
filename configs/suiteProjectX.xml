@@ -1,0 +1,7 @@
+<suite name="TestAll">
+    <test name="tests.home">
+        <classes>
+            <class name="tests.home.TestAdLinks" />
+        </classes>
+    </test>
+</suite>
